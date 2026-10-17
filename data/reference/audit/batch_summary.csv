@@ -1,0 +1,5 @@
+﻿role,kind,total,complete,unavailable,failed,recovery_pending,started_unconfirmed,not_started,not_ready,conflicting_results,completion_rate
+coder,comments,2174,2125,49,0,0,0,0,0,0,0.9774609015639374
+coder,videos,748,748,0,0,0,0,0,0,0,1.0
+checker,videos,89,89,0,0,0,0,0,0,0,1.0
+checker,comments,889,884,5,0,0,0,0,0,0,0.9943757030371203

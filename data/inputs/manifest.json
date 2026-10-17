@@ -1,0 +1,28 @@
+{
+  "created_at": "2026-10-05T08:36:24.339303+00:00",
+  "experiment": "agents_deepseek_economy_v1",
+  "seed": 125566173,
+  "preparation": {
+    "mode": "agents",
+    "threads_per_video": 0,
+    "comment_batching": "cross_video_20_full_threads",
+    "transcripts_hash": null
+  },
+  "comment_cutoff": "2026-09-26T01:31:58.591507+00:00",
+  "window": "all",
+  "threads_per_video": 0,
+  "n_videos": 7476,
+  "n_comments": 43477,
+  "n_threads": 32377,
+  "job_hash": "8ca6ece7618ec1290f0434e1aff16e884f62c8c98234f37201e4d6856e2d093d",
+  "files": {
+    "videos.csv": "969f5d892746a465d37eb123a2192c8133358a6392460fe741693b1894a1e441",
+    "comments.csv": "7489f464de5f6126c9a7df151636af6e436156d07f8de777b12cad0cdb93d574",
+    "coverage.csv": "89bed304cdc0e24674477bd178621bd889eae3df3fa2fd70d42ef461185e1e7c",
+    "codebook.md": "dbb70bc95302098fb694d368a1d7ccce8753f0b973fd0d1926b8148ec06b82b9"
+  },
+  "human_threads": {},
+  "requested_human_threads": {},
+  "prior_validation_videos_excluded": 0,
+  "reference_type": "none_ai_only"
+}

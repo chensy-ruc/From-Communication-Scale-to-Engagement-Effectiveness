@@ -1,0 +1,3 @@
+﻿model,outcome,rhs,family,status,n,parameters,dropped,warnings,aic,pearson_dispersion
+comment_count_nb2,observed_comments,log_views + log_duration + log_age,nb2,ok,7472,4,4,,28664.124804118226,
+cross_account_binomial,n_cross_account_roots,log_views + log_duration + log_age,binomial,ok,4906,4,2570,,7035.6222835636945,1.0430344900716064

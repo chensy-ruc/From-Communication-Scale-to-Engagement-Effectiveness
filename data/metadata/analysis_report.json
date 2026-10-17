@@ -1,0 +1,79 @@
+{
+  "model_version": "b139c290cafb5c79ac7924b27bea452b972a0b1813564d050d10c52e9b73402e",
+  "analysis_logic_version": 4,
+  "coding_source": "ai_screening_unvalidated",
+  "comment_window": "all",
+  "comment_cutoff": "2026-09-26T01:31:58.591507+00:00",
+  "videos": 7476,
+  "comments": 43477,
+  "metrics": [
+    {
+      "metric": "deep_rate",
+      "dependencies": [
+        "spam",
+        "information_request",
+        "fact_check",
+        "reasoned_opinion",
+        "cross_cultural"
+      ],
+      "failed_validation_labels": null,
+      "observed_videos": 3289
+    },
+    {
+      "metric": "dialogue_conversion_rate",
+      "dependencies": [
+        "spam",
+        "substantive_response"
+      ],
+      "failed_validation_labels": null,
+      "observed_videos": 4236
+    },
+    {
+      "metric": "learning_expression_rate",
+      "dependencies": [
+        "spam",
+        "learning_or_reconsideration"
+      ],
+      "failed_validation_labels": null,
+      "observed_videos": 3922
+    },
+    {
+      "metric": "sharing_intent_rate",
+      "dependencies": [
+        "spam",
+        "sharing_intent"
+      ],
+      "failed_validation_labels": null,
+      "observed_videos": 3986
+    }
+  ],
+  "threads_per_video": 0,
+  "analysis_configuration": {
+    "bootstrap_reps": 1000,
+    "min_group_n": 5,
+    "min_regression_n": 50,
+    "rare_category_n": 10
+  },
+  "analysis_seed": 20250917,
+  "validation_reference": "none_ai_only",
+  "validation_gate": null,
+  "measurement_policy": "resolved_ai_only_exploratory",
+  "scope": "conditional_associations_in_observed_machine_coded_sample",
+  "notes": [
+    "语义标签来自单轮初编及重点复查＋非重点部分分层随机抽查；没有全量盲复核或裁决。",
+    "抽查模型看不到初编标签，但同模型仍可能共同出错；只报告分域检查一致性，不报告准确率或人工信度。",
+    "只有该指标可由相关受众标签确定时计算；null 不当作 0，不靠删除不确定评论改变分母。",
+    "分析为模型标签的探索性关联；置信区间不包含模型误分类与裁决误差。",
+    "原人工 coding/ 与 codes_* 表未改动，机器标签没有 reviewed=1 的人工声明。",
+    "关闭评论、无受众评论、未通过验证及模型弃权不赋值为低质量零分。",
+    "主题来自标题/说明，形式仅使用提供的字幕；不能宣称模型观看了视频。",
+    "学习/重新考虑表达与分享意向只是文本指标，不等于实际认知改变、分享行为和传播扩散。",
+    "认知参与是 OR：任一认知标签为 1 即可确定为认知参与；没有正标签但有未知项则仍为未知。",
+    "根评论认知比例仅依赖有效根评论；对话仅依赖同线程较晚的已知异账户受众回复。",
+    "lower/upper 为未知标签取可能值所得的逻辑上下界，不是置信区间；分母不确定时仍缺失。",
+    "measurement_coverage.csv 按缺失原因报告有效视频数、观看与评论规模，帮助识别选择性缺失。",
+    "回归按 rare_category_n 合并稀有视频类别；映射见 model_category_pooling.json，描述与组间比较保留原类别。",
+    "分组二项模型以成功数/分母判断是否恒定；成功条数相同但分母不同仍可估计。",
+    "初编或已选检查被服务拒绝时保留不可编码缺失；分歧或弃权字段保留 null，未抽中仍是未经独立检查的初编标签。"
+  ]
+}

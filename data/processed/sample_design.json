@@ -1,0 +1,12 @@
+{
+  "n": 7476,
+  "N": 7476,
+  "strata": [
+    "month",
+    "duration_band"
+  ],
+  "seed": 20250917,
+  "created_at": "2026-09-26T01:31:58.570264+00:00",
+  "sample_hash": "087479fce70beecfee2cc308e2552e4e7cf278652902f94dce5e3171e6fa7477",
+  "mode": "census"
+}

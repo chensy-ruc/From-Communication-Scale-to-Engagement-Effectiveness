@@ -1,0 +1,50 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Only the curated dataset belongs in Git; new collection runs remain local.
+/data/*
+!/data/manifest.json
+!/data/study.toml
+!/data/processed/
+!/data/inputs/
+!/data/labels/
+!/data/checks/
+!/data/reference/
+!/data/metadata/
+/reports/
+/outputs/
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+.author_salt
+
+# Local archives, demo outputs, release bundles, browser artifacts
+/.local/
+/demo-output/
+/dist/
+/build/
+/.playwright-mcp/
+*.zip
+*.whl
+*.tar.gz
+*.log
+
+# Python, editors, operating system
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

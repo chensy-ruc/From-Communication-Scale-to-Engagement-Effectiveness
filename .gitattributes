@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+*.zip binary
+# Frozen data hashes must survive checkout without newline conversion.
+/data/** -text -whitespace

@@ -1,0 +1,14 @@
+{
+  "videos": 7476,
+  "comments": 43478,
+  "video_exclusions": 0,
+  "window": "all",
+  "eligible_comments": 43478,
+  "text_rule": "按 ID 去重；保留情绪、表情、短评、非西语和不同作者的相同文本；仅添加质量标记。",
+  "missing_statistics": {
+    "view_count": 0,
+    "like_count": 0,
+    "comment_count": 0
+  },
+  "duration_note": "时长分层不是 Shorts 分类；平台形态由人工复核。"
+}

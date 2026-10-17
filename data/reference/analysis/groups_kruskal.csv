@@ -1,0 +1,13 @@
+﻿factor,outcome,n,k,H,p,epsilon_squared,status,p_adjusted,adjustment
+topic,view_count,7333,6,79.78732786618697,9.297075131024666e-16,0.010207087193419813,ok,1.8594150262049332e-15,fdr_bh
+topic,likes_per_1000_views,7333,6,124.48858310641651,3.512238123327212e-25,0.016307981862483487,ok,1.4048952493308849e-24,fdr_bh
+topic,deep_rate,3220,6,38.526346544406444,2.9575055069828853e-07,0.010431346155695844,ok,3.9433406759771806e-07,fdr_bh
+topic,dialogue_conversion_rate,4152,6,24.198177304394292,0.0001988770354535957,0.004630529981764181,ok,0.0001988770354535957,fdr_bh
+form,view_count,0,0,,,,insufficient_groups,,fdr_bh
+form,likes_per_1000_views,0,0,,,,insufficient_groups,,fdr_bh
+form,deep_rate,0,0,,,,insufficient_groups,,fdr_bh
+form,dialogue_conversion_rate,0,0,,,,insufficient_groups,,fdr_bh
+platform_format,view_count,7476,1,,,,insufficient_groups,,fdr_bh
+platform_format,likes_per_1000_views,7476,1,,,,insufficient_groups,,fdr_bh
+platform_format,deep_rate,3289,1,,,,insufficient_groups,,fdr_bh
+platform_format,dialogue_conversion_rate,4236,1,,,,insufficient_groups,,fdr_bh

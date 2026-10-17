@@ -1,0 +1,14 @@
+{
+  "protocol_hash": "b139c290cafb5c79ac7924b27bea452b972a0b1813564d050d10c52e9b73402e",
+  "plan_hash": "c95c89c8c8160f544f946d72c1d58e5123a525d3ba6b78e8de3107de6d019426",
+  "selection_counts": {
+    "remaining": 31348,
+    "risk": 15144,
+    "random": 3500,
+    "unavailable": 961
+  },
+  "checks": 978,
+  "human_reference": false,
+  "figure_count": 15,
+  "full_population_reliability": false
+}

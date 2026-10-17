@@ -1,0 +1,93 @@
+# 编码手册 v1.0
+
+本手册是本研究拟定的操作定义，不是已验证的通用心理量表。正式编码前做样本外试编码，固定版本与判定规则。A/B 独立判断原文及其语境，不能用政治立场、赞成/反对或对研究假设有利与否决定质量。
+
+## 单元、语境和操作
+
+视频是内容类别单元；单条评论是语义单元；顶层评论及其回复组成线程，用于观察互动过程。YouTube API 的回复 `parentId` 指向顶层评论，**不能据此断定每条回复直接回应了顶层作者**。本项目构建线程级共同参与，不生成未经验证的精确用户对用户回复网络。
+
+视频编码员需观看内容并结合标题、说明；评论编码员阅读原始西语、视频标题及 context 文件。必要时可借助翻译理解，但保留原文判断依据。语言识别只是辅助元数据，短文本 `und` 不自动排除。不得推断作者国籍、居住国、族裔；西语发言也不等于西班牙籍。
+
+所有标签必填，0 代表经过判断后“不符合”，不是未知；未知暂用 `uncertain=1` 和备注，最终裁决必须解决。`reviewed=1` 表示已实际检查。`coder_id` 是真实研究编码员代号，可匿名但 A/B 不重叠。
+
+## 视频标签：三个互相区分的维度
+
+每维选择一个主类别，综合内容主体与叙事重点；跨题内容优先主线/主要时长，无法明确时记 `other` 并写备注。不凭点赞量倒推类别。
+
+| 字段 | 取值 | 操作定义 |
+|---|---|---|
+| topic | china_governance | 中国国内治理、政策、发展制度、公共事务为主 |
+| topic | economy_technology | 经济、贸易、基础设施、产业、科技创新为主 |
+| topic | international_relations | 外交、国际冲突、国际机构、国家间关系为主 |
+| topic | culture_society | 文化、日常生活、历史、旅游、社会、体育为主 |
+| topic | people_exchange | 人与人的中外交流、青年交往、互访、跨文化共同体验为主；不是出现外国人就属于此类 |
+| topic | other | 主线不属于上述或无法唯一归类，备注说明 |
+| form | news_report | 新闻播报、记者报道或短新闻包 |
+| form | interview_dialogue | 有实际访谈、问答、主持人/嘉宾讨论结构 |
+| form | documentary | 纪实叙事、人物或议题纪录片 |
+| form | experience_vlog | 第一人称实地体验、旅行或生活记录 |
+| form | speech_event | 演讲、发布会、仪式、会议活动记录 |
+| form | other | 其他主要表现形式 |
+| platform_format | shorts | 人工确认 YouTube 页面按 Shorts 提供；时长不足 180 秒不是充分证据 |
+| platform_format | standard | 普通公开视频，非 Shorts、非直播回放 |
+| platform_format | live_replay | 人工确认直播回放；与 API actualStartTime 相互核查 |
+| platform_format | unknown | 无法确认平台形态；可保留并在敏感性分析排除 |
+
+例如，经济发展题材的纪录片可以是 `economy_technology + documentary + standard`；采访青年互访可以是 `people_exchange + interview_dialogue + standard`。不要将“文化类”和“访谈类”混成同一变量。
+
+## 评论标签：多标签 0/1
+
+| 字段 | 1 的判定 | 不能单凭这些就记 1 |
+|---|---|---|
+| information_request | 真正询问事实、背景、原因、途径或概念，期待信息回答 | 纯反问、讽刺或只有问号 |
+| fact_check | 要求/提供来源、核查数字事实、用证据纠错或质疑 | 没有具体对象的“全是假话” |
+| opinion | 对议题表达可识别观点、判断或立场 | 单个表情、纯问候 |
+| reasoned_opinion | 观点附带可识别理由、证据、例证或因果解释；此时 opinion 必须为 1 | 仅字数长、重复口号、无论据断言 |
+| cross_cultural | 明确联系至少两个文化/社会语境并比较经验、制度、生活方式、意义 | 仅说“来自墨西哥的问候”或列国旗 |
+| emotion | 表达喜爱、愤怒、感动、赞叹等情绪 | 为迎合摘要而把情绪一概当认知或把负面情绪当低质量 |
+| substantive_response | 回复评论在语境中针对其他用户先前的问题/论据/经验做出相关解释、答复、实质反驳或进一步讨论 | 仅“sí”“gracias”、@别人、不相关留言；顶层评论固定 0 |
+| learning_or_reconsideration | 明确表述获得新认识、纠正旧认识或重新考虑观点 | 一般好评、“有趣”，或研究者推测他已学习 |
+| sharing_intent | 明确说将分享、推荐、转发或已分享这一内容 | 一般喜欢、点赞；该标签仍不是后台验证的实际转发 |
+| spam | 明显不相关广告、诈骗、机械灌水等；给出可复核理由 | 短评、表情、异议、外语、不同用户的相同口号 |
+
+垃圾信息的其他内容标签通常为 0，但可据内容实际判断；`spam=1` 会从受众质量分母排除，保留数量和记录。频道自己的评论照常编码以保留对话语境，但不进入“受众参与质量”分母。顶层频道自评线程不进入受众根评论抽样框。
+
+合成示例，仅说明规则，不来自真实数据：
+
+| 文本 | 可能编码 |
+|---|---|
+| “¡Excelente! ❤️” | emotion=1，其余内容认知标签一般 0 |
+| “¿Dónde puedo consultar las cifras originales?” | information_request=1；若针对核实片中数据，fact_check=1 |
+| “No estoy de acuerdo: el informe de 2024 muestra…” | opinion=1, reasoned_opinion=1；确实核验具体事实时 fact_check=1 |
+| “En mi ciudad de México hacemos X; en esta ciudad china…” | 若具有实质比较，cross_cultural=1；不能据此验证作者国籍 |
+| 回复：“Sobre tu pregunta, el dato corresponde a…” | 语境相关时 substantive_response=1；若含解释通常也有认知标签 |
+| “Antes pensaba X; con esta explicación entiendo Y.” | learning_or_reconsideration=1；其余按是否有实质理由判断 |
+
+## 派生参与质量与转化代理
+
+程序根据最终多标签编码生成，不额外让编码员凭整体印象打分。
+
+| 等级/变量 | 规则 | 解释 |
+|---|---|---|
+| quality_level=0 | 无观点、无认知标签 | 简短情感、问候、表情等外围参与；并非负面评价 |
+| quality_level=1 | opinion=1，但无认知标签 | 有观点、未展开理解/论据 |
+| quality_level=2 | information_request / fact_check / reasoned_opinion / cross_cultural 至少一个为 1 | 认知性参与 |
+| quality_level=3 | 满足认知性且 substantive_response=1 | 具有实质回应的认知性参与 |
+| deep_rate | 非垃圾、非频道受众评论中认知性评论比例 | 0–1；无有效受众评论时为缺失 |
+| mean_quality | 同一分母下 0–3 等级均值 | 仅辅助描述；等级等距假设不作为核心模型依据 |
+| root_cognitive_rate | 身份可判有效根评论中的认知性比例 | 与后续回复的质量分开测量 |
+| cross_user_reply | 根评论后出现已知不同账户的受众回复 | 结构性共同参与，未必是实质对话 |
+| dialogue_conversion | 根评论后存在已知异于根作者的受众回复，且 substantive_response=1 | 线程内可观察对话代理，不证明跨文化理解成功 |
+| sustained_dialogue | 至少 3 条有效受众评论、2 个已知账户、至少 1 人重复发言、至少 2 条认知性/实质回应，并满足 dialogue_conversion | 持续互动的操作性代理，不等于真实来回轮次均已证实 |
+
+根作者 ID 缺失时无法可靠判定异作者，相关线程从转化分母排除；回复作者缺失不推断身份，可能低估对话，须报告数量。`learning_or_reconsideration`、`sharing_intent` 各自报告发生率，不并入一个没有验证的“综合传播效能指数”。
+
+跨文化比较是文本内容证据，不是对发言双方文化身份的验证。政治立场、支持程度不属于本项目的质量判定条件。
+
+## 信度与裁决记录
+
+A 对全体样本、B 对约 20% 的分层随机子样本独立编码。视频按视频抽取 B；评论按线程簇抽取 B，保留回复语境。独立编码前不给两人展示另一人的标签或热度指标。正式信度样本不要全部来自容易判断的样本。
+
+分别报告每个名义标签的原始一致率、κ、nominal α、类别分布和有效 n；质量等级补充线性加权 κ。代码中 nominal α 适用于**两人、完整配对、无缺失标签**，不声称实现多编码员缺失数据的一般公式。κ bootstrap 视频编码按视频重抽，评论编码按视频簇重抽；簇过少或有效重抽不足时不输出虚假的区间。
+
+低发生率可使 κ/α 低或不可识别，要结合分布、分歧实例与采样讨论。可追加预先定义的独立验证样本，但不得只挑“一定能一致”的案例。裁决表的每个分歧单元记录“判定依据；裁决者代号；日期”，保留原 A/B 文件。

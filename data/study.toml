@@ -1,0 +1,99 @@
+[study]
+year = 2025
+timezone = "UTC"
+channel_id = "UCd94YCD7yp6d-YZSRYWyeFA"
+channel_handle = "@CGTNEspanol"
+# 每个 run_id 是独立采集快照；重跑同一个 run_id 会续传，不会刷新计数。
+run_id = "cgtn_es_2025_snapshot_01"
+data_dir = "data"
+reports_dir = "reports"
+seed = 20250917
+# all: 截至本轮首次请求时的评论；year: 2025 年内；first30: 发布后 30 天。
+# 原始评论全部保存，窗口只影响编码与分析。修改后须建立新编码目录。
+comment_window = "all"
+
+[api]
+# collect-videos / collect-comments 默认不限运行时长（--hours 0）。
+# collect-all 始终全量、不限运行时长；每日配额与单次请求超时仍然有效。
+# 本机当前项目的每日保守上限；所有命令共享美国太平洋时区配额账本。
+# 其他电脑/程序的用量不在本地账本中，仍以 Cloud Console 为准。
+daily_budget = 9000
+requests_per_second = 3.0
+workers = 4
+timeout_seconds = 30
+retries = 5
+
+[analysis]
+bootstrap_reps = 1000
+min_group_n = 5
+min_regression_n = 50
+rare_category_n = 10
+
+[ai]
+# 默认双阶段：全量初编 + 重点及分层随机检查。
+workflow = "screening"
+# OpenAI 兼容 Chat Completions。模型、地址和独立密钥在 .env 的 AI_* 配置。
+# 以下保留研究运行参数；更换服务时核对其 JSON mode、token 字段与思考模式支持。
+response_format = "json_object"
+token_limit_field = "max_tokens"
+# 每次 HTTP 请求（含拆出的子批）的输出上限；不累计到整个实验。
+max_completion_tokens = 6000
+# 初编和检查均关闭思考；不再运行盲复核与裁决角色。
+thinking = "disabled"
+# 连续完成当前实验；只限制单次生成，不按累计请求数/输出量暂停。
+default_experiment = "agents_deepseek_economy_v1"
+default_max_requests = 0
+# 0=关闭全命令输出预算；仍记录每次及累计 token 用量。
+# 如需临时小规模检查，可显式使用 --max-requests N。
+max_output_tokens_per_run = 0
+max_input_characters = 200000
+# AI 每阶段并发数；命令行 --workers 可覆盖，范围 1..64。与每秒派发速率分别控制。
+workers = 16
+requests_per_second = 1.0
+timeout_seconds = 180
+retries = 1
+# 视频与评论可恢复格式错误：保存有效项，只重试失败项；语义标签不代填。
+# comment_recovery/comment_schema_retries 保留兼容名称，现作用于两种材料。
+# 运行恢复策略单独记录版本，不改冻结的模型、基础提示词或已完成标签。
+comment_recovery = true
+# 全批校验失败直接拆小，不再先重复整批；合格项仍独立缓存。
+comment_schema_retries = 0
+# 单条评论两次逐字证据失败（最近一次含字段反馈）后，单列测量缺失继续。
+# 全实验初编/检查合计最多 10 个“角色×评论”，跨续传累计，防止大量失败被掩盖。
+# 不改变标签、不跳过服务/账户/网络错误；设为 0 恢复严格暂停。不是 token 预算。
+evidence_quarantine_limit = 10
+# 预算停止/中断时生成一次本机审计和图表；没有定时生成，不请求模型。
+audit_on_pause = true
+# 由完成事件触发：首批、每完成若干批、失败和阶段结束时输出；没有定时弹出。
+progress_every_jobs = 10
+# 连续失败时停止派发，防止整晚重复消耗；修复接口后同命令续传。
+max_consecutive_failures = 5
+# 服务要求更久的 Retry-After 时交给阶段自动恢复，不提前重试。
+max_retry_delay_seconds = 30
+# 网络错误按 10/20 秒共享退避；批内重试耗尽后尝试阶段自动恢复。
+network_retry_delay_seconds = 10
+# 同一命令最多自动恢复 2 轮；恢复不重置请求数或 token 预算。
+# 遵守 Retry-After，累计恢复等待最多 300 秒。
+auto_recovery_rounds = 2
+auto_recovery_delay_seconds = 30
+auto_recovery_wait_seconds = 300
+# 阶段末不额外重复未通过任务，保留断点供检查后续传。
+deferred_retry_rounds = 0
+# 本机报告仅对短暂的文件占用/IO 中断重试一次，不发模型请求。
+report_retry_rounds = 1
+# 沿用本机 HTTP(S)_PROXY 等环境设置；仅确认代理配置不适用时再改为 false。
+trust_env = true
+# 以下只用于旧 ai-* 人工参考方案，agent-* 零人工流程不使用人工验证门槛。
+# 全 AI 流程输出探索性结果，AI 一致性不冒充标签准确率。
+# 以下为本项目预先指定的筛选规则，不是效度的通用标准。ai-freeze 后固定。
+min_reference_positives = 10
+min_reference_negatives = 10
+min_precision = 0.80
+min_recall = 0.80
+min_prediction_coverage = 0.95
+
+# agent-run 首次运行即冻结双阶段协议；agent-screen 是兼容入口。
+[ai.screening]
+random_fraction = 0.10
+batch_size = 20
+max_completion_tokens = 6000

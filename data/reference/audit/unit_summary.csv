@@ -1,0 +1,7 @@
+﻿role,kind,total,complete,unavailable,failed,recovery_pending,started_unconfirmed,not_started,not_ready,conflicting_results,completion_rate,complete_all_labels_resolved,complete_with_abstentions,complete_all_labels_abstained
+coder,comments,43477,42516,961,0,0,0,0,0,0,0.9778963589944109,40256,2260,24
+coder,videos,7476,7476,0,0,0,0,0,0,0,1.0,0,7476,13
+checker,videos,883,883,0,0,0,0,0,0,0,1.0,0,883,10
+checker,comments,17761,17756,5,0,0,0,0,0,0,0.9997184843195766,16522,1234,16
+final,comments,43477,42511,966,0,0,0,0,0,0,0.9777813556593141,30796,11715,49
+final,videos,7476,7476,0,0,0,0,0,0,0,1.0,0,7476,143

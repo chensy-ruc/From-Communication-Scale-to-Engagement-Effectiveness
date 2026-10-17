@@ -1,0 +1,7 @@
+﻿role,kind,unavailable_reason,units,planned_units,share_of_planned
+checker,comments,evidence_validation_exhausted,5,17761,0.00028151568042339957
+coder,comments,evidence_validation_exhausted,1,43477,2.300066701934356e-05
+coder,comments,provider_refusal,960,43477,0.02208064033856982
+final,comments,"{""checker"": ""evidence_validation_exhausted""}",5,43477,0.0001150033350967178
+final,comments,"{""coder"": ""evidence_validation_exhausted""}",1,43477,2.300066701934356e-05
+final,comments,"{""coder"": ""provider_refusal""}",960,43477,0.02208064033856982
